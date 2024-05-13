@@ -1,4 +1,4 @@
-Create a user account with username ​sysadmin​ with thefollowing attributes:
+Create a user account with username ​sysadmin​ with the following attributes:
 1. Use a password of ​science​.
 2. This user's home directory is defined as ​/sysadmin/​:
 ```
@@ -10,7 +10,7 @@ sudo passwd sysadmin # science
 ```
 sudo usermod -aG sudo sysadmin
 sudo visudo
->> %sysadmin ALL= NOPASSWD: ALL
+>> sysadmin ALL = NOPASSWD: ALL
 ```
 
 4. The default shell for this user is ​zsh:
