@@ -3,10 +3,10 @@
 Find files with depth 3 and size above 2 mb:
 `find . -maxdepth 3 -type f -size +2M`
 
-Find files with permission 777 and remove them:
-`find /home/user -perm 777 -exec rm '{}' +`
+Find files with permission 777 and remove them all at once: `find /home/user -perm 777 -exec rm {} +` 
+to execute the rm command on each line found: `find /home/user -perm 0777 -exec rm {} \;`
 
-> Using `-exec` with a semicolon (eg. "find . -exec ls '{}' \;"), will execute the command separately for each argument passed, while using a plus sign instead (e.g "find . -exec ls '{}' +"), as many arguments as possible are passed to a single command: if the number of arguments exceeds the system's maximum command line length, the command will be called multiple times.
+> Using `-exec` with a semicolon (eg. "find . -exec ls {} \;"), will execute the command separately for each argument passed, while using a plus sign instead (e.g "find . -exec ls {} +"), as many arguments as possible are passed to a single command: if the number of arguments exceeds the system's maximum command line length, the command will be called multiple times.
 
 Find files based on how many times they have been accessed (`-atime n`) or modified (`-mtime n`) (with `n` = n*24 hours ago):
 `find /etc -iname "*.conf" -mtime -180 –print`
@@ -25,7 +25,7 @@ Find all files with at least (`-` sign before `g` in this example) permission wr
 
 Boolean conditions for searching by permission mode:
 - `-perm mode`: file's permission bits are exactly mode (octal or symbolic)
-- `-perm -mode`: all of the permission bits mode are set for the file
+- `-perm -mode`: at least the permission bits mode are set for the file
 - `-perm /mode`: any of the permission bits mode are set for the file.
 
 Audit a system to find files with root SUID/SGID:
@@ -79,4 +79,4 @@ Named character classes ([[:named:]]) are used inside brackets to represent an e
 - ‘[:lower:]', prints all those files having lower-case letters.
 - ‘[:punct:]', prints all those files having punctuation characters, will search for ! ” # $ % & ‘ ( ) * + , – . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~.
 - ‘[:space:]', prints all those files having space characters.
-- ‘[:upper:]', prints all those files having lower-case letters.
+- ‘[:upper:]', prints all those files having upper-case letters.
